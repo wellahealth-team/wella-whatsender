@@ -9,7 +9,6 @@ C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\WellaWhatsende
 C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\MainWindow.g.cs
 C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\App.g.cs
 C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\WellaWhatsender_MarkupCompile.cache
-C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\WellaWhatsender_MarkupCompile.lref
 C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\MainWindow.baml
 C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\WellaWhatsender.g.resources
 C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\WellaWhatsender.GeneratedMSBuildEditorConfig.editorconfig
