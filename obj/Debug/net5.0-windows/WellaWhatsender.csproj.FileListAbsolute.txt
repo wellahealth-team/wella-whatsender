@@ -19,3 +19,6 @@ C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\WellaWhatsende
 C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\ref\WellaWhatsender.dll
 C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\WellaWhatsender.pdb
 C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\WellaWhatsender.genruntimeconfig.cache
+C:\Users\HP\source\repos\WellaWhatsender\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+C:\Users\HP\source\repos\WellaWhatsender\bin\Debug\net5.0-windows\WebDriver.dll
+C:\Users\HP\source\repos\WellaWhatsender\obj\Debug\net5.0-windows\WellaWhatsender.csproj.CopyComplete
