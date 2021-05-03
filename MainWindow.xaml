@@ -32,12 +32,12 @@
 
         <!--<Label  Grid.Row="0">WELLAHEALTH IMAGE</Label>-->
         <TextBlock Style="{StaticResource AppHeaderTitle}" Grid.Row="1" Margin="0,8,0,10" Grid.RowSpan="2">WELLAHEALTH WHATSENDER</TextBlock>
-        <Button x:Name="openWhatsappWeb" Margin="40,10"  Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyles}" Click="openWhatsappWeb_Click" >Open Whatsapp</Button>
+        <!--<Button x:Name="openWhatsappWeb" Margin="40,10"  Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyles}" Click="openWhatsappWeb_Click" >Open Whatsapp</Button>-->
 
         <StackPanel Grid.Row="3" Grid.Column="0">
             <Button x:Name="uploadPhoneNumbersButton" Margin="40,10" Style="{StaticResource ButtonStyles}" Click="uploadPhoneNumbersButton_Click" >Upload a List of Phone Numbers</Button>
             <TextBox x:Name="messageToSend" Height="100" FontFamily="Comic Sans MS" Margin="40,18" BorderThickness="2" />
-            <Button Margin="30,5" x:Name="sendMessageButton" Style="{StaticResource ButtonStyles}" Click="SendMessageButton_Click">Send Message</Button>
+            <Button Margin="30,5" x:Name="sendMessageButton" Style="{StaticResource ButtonStyles}" Click="sendMessageButton_Click" >Send Message</Button>
         </StackPanel>
 
         <TextBlock FontSize="13" Grid.Row="2" Grid.Column="1" FontFamily="Comic Sans MS">Phone Number List</TextBlock>

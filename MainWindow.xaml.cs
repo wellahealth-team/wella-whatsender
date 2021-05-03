@@ -4,7 +4,6 @@ using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Windows;
 
@@ -25,15 +24,20 @@ namespace WellaWhatsender
             webDriver = new ChromeDriver();
         }
 
-        //private void PhoneNumberAddButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (!string.IsNullOrWhiteSpace(phoneNumber.Text) && !phoneNumbersListBox.Items.Contains(phoneNumber.Text))
-        //        phoneNumbersListBox.Items.Add(phoneNumber.Text);
-        //    else
-        //        CommonResources.MessageBoxMethod("Phone number has already been added", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        //}
+        private bool CheckLoggedIn()
+        {
+            try
+            {
+                return webDriver.FindElement(By.Id("app")).Displayed;
+            }
+            catch (Exception ex)
+            {
+                CommonResources.MessageBoxMethod($"Error is {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
 
-        private void SendMessageButton_Click(object sender, RoutedEventArgs e)
+        private void sendMessageButton_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(messageToSend.Text))
             {
@@ -47,57 +51,34 @@ namespace WellaWhatsender
             }
 
             int sleepTime = 1000;
+            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-            //WIP
-            foreach (var phoneNumber in phoneNumbersListBox.Items)
+            foreach (string phoneNumber in phoneNumbersListBox.Items)
             {
-                //work with the phone numbers here...
                 try
                 {
                     Thread.Sleep(sleepTime);
-                    var searchLense = webDriver.FindElement(By.ClassName("C28xL"));
-                    Thread.Sleep(sleepTime);
-                    searchLense.Click();
-                    Thread.Sleep(sleepTime);
-                    webDriver.SwitchTo().ActiveElement().SendKeys(phoneNumber.ToString());
-                    Thread.Sleep(sleepTime);
 
-                    // Get the chat list. List size should be grater than 0.
-                    var chatSearchResultList = webDriver.FindElements(By.ClassName("_2wP_Y"));
-                    Thread.Sleep(sleepTime);
-                    bool bMessageSent = false;
+                    string phone = CommonResources.FormatPhoneNumber(phoneNumber);
 
-                    foreach (IWebElement webElement in chatSearchResultList)
-                    {
-                        if (webElement != null && !string.IsNullOrEmpty(webElement.Text))
-                        {
-                            string nameMsg = webElement.Text.Split(new[] { '\r', '\n' }).FirstOrDefault();
-                            if (nameMsg.Equals(phoneNumber.ToString()))
-                            {
-                                webElement.Click();
-                                bMessageSent = true;
-                                break;
-                            }
-                        }
-                    }
+                    webDriver.Navigate().GoToUrl("https://api.whatsapp.com/send/?phone=" + phone + "&text=" + Uri.EscapeDataString(messageToSend.Text));
+                    webDriver.FindElement(By.Id("action-button")).Click();
                 }
                 catch (Exception ex)
                 {
-
                     CommonResources.MessageBoxMethod($"Error is {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
 
-        private void openWhatsappWeb_Click(object sender, RoutedEventArgs e)
-        {
-            webDriver.Url = baseUrlForWhatsappWeb;
-            webDriver.Manage().Window.Maximize();
-        }
+        //private void openWhatsappWeb_Click(object sender, RoutedEventArgs e)
+        //{
+        //    webDriver.Url = baseUrlForWhatsappWeb;
+        //    webDriver.Manage().Window.Maximize();
+        //}
 
         private void PopulatePhoneNumberListBox(string filePath)
         {
-
             var listOfPhoneNumbers = new List<string>();
             using (FileStream stream = File.OpenRead(filePath))
             using (TextReader reader = new StreamReader(stream))
@@ -119,7 +100,7 @@ namespace WellaWhatsender
 
             bool? result = openFileDialog.ShowDialog();
 
-            if(result == true)
+            if (result == true)
             {
                 PopulatePhoneNumberListBox(openFileDialog.FileName);
             }
